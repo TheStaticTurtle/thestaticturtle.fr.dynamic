@@ -1,12 +1,10 @@
-from django.http import HttpResponse
+from django import template
+from django.http import HttpResponse, QueryDict
 from django.template import loader
 from django.shortcuts import render
-from django.template.defaultfilters import register
 from datetime import date
 
 from .models import SocialLink, GeneralConfig, School, DiplomaAward, Experience, Interest, EXPERIENCE_TYPE_CHOICES
-
-
 
 def index(request):
 	template = loader.get_template('index.html')
@@ -33,7 +31,8 @@ def index(request):
 		},
 
 		'const': {
-			'today': date.today()
+			'today': date.today(),
+			'birthday': date.fromisoformat(GeneralConfig.objects.get(key="about_brithday").value)
 		}
 	}
 	print()

@@ -1,9 +1,15 @@
 {% load static %}
+{% load replace %}
+{% load split %}
 {% block section_about %}
 <section id="section-about" style="background-color: rgba(0,0,0,0);height: 100vh;">
     <div class="container d-flex flex-column justify-content-center" style="height: 100%;padding-left: 40px;padding-top: 20px;padding-right: 20px;padding-bottom: 20px;">
         <h1 class="d-flex flex-wrap" style="font-family: 'Russo One', sans-serif;font-size: 60px;">{{ about.title | safe}}</h1>
-        {{ about.tldr | safe}}
+        {% with age=const.today|timeuntil:const.birthday %}
+            {% with agespl=age|split:","|get:0 %}
+                {{ about.tldr | search:"---auto_age---" | replace:agespl | safe }}
+            {% endwith %}
+        {% endwith %}
 
         <div class="d-flex flex-row">
             {% for social_link in about.social_links %}
