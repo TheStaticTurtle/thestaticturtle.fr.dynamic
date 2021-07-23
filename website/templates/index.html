@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>TheStaticTurtle</title>
+    <meta name="theme-color" content="rgb(255,255,255)">
+    <meta property="og:image" content="{% static 'website/img/3K2a4H90_400x400.jpg' %}">
+    <meta name="twitter:card" content="summary">
+    <meta property="og:type" content="website">
+    <meta name="twitter:title" content="TheStaticTurtle">
+    <link rel="icon" type="image/png" sizes="400x400" href="{% static 'website/img/3K2a4H90_400x400.jpg' %}">
+    <link rel="icon" type="image/png" sizes="400x400" href="{% static 'website/img/3K2a4H90_400x400.jpg' %}">
+    <link rel="icon" type="image/png" sizes="400x400" href="{% static 'website/img/3K2a4H90_400x400.jpg' %}">
+    <link rel="icon" type="image/png" sizes="400x400" href="{% static 'website/img/3K2a4H90_400x400.jpg' %}">
+    <link rel="icon" type="image/png" sizes="400x400" href="{% static 'website/img/3K2a4H90_400x400.jpg' %}">
+    <link rel="stylesheet" href="{% static 'website/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="manifest" href="{% static 'website/manifest.json' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Russo+One">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+    <link rel="stylesheet" href="{% static 'website/fonts/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'website/fonts/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'website/fonts/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'website/fonts/material-icons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'website/fonts/typicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'website/fonts/fontawesome5-overrides.min.css' %}">
+    <link rel="stylesheet" href="{% static 'website/css/styles.min.css' %}">
+    <script>
+        function collapseNavbarMediaQuery() {
+            if (window.matchMedia('(max-width: 992px)').matches) {
+                $('#sideNav > div > .navbar-toggler').click();
+            } else {
+
+            }
+        }
+        function docReady(fn) {
+            // see if DOM is already available
+            if (document.readyState === "complete" || document.readyState === "interactive") {
+                // call on next available tick
+                setTimeout(fn, 1);
+            } else {
+                document.addEventListener("DOMContentLoaded", fn);
+            }
+        }
+    </script>
+</head>
+<body>
+    {% include "navbar.html" %}
+    {% include "section_about.html" %}
+    <hr>
+    {% include "section_education.html" %}
+    <hr>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script>
+            docReady(function() {
+                $(function () {
+                    $('[data-toggle="popover"]').popover()
+                })
+            });
+            docReady(function() {
+                $('[data-toggle="popover"]').popover({
+                    //trigger: 'focus',
+                    html: true,
+                    content: function () {
+                        return '<a target="_blank" href="'+$(this).data('img') + '"><img class="img-fluid" src="'+$(this).data('img') + '" /></a>';
+                    },
+                    title: 'Toolbox'
+                })
+            });
+            docReady(function() {
+                $('[data-toggle="popover"]').popover({
+                    //trigger: 'focus',
+                    html: true,
+                    content: function () {
+                        return '<a target="_blank" href="'+$(this).data('img') + '"><img class="img-fluid" src="'+$(this).data('img') + '" /></a>';
+                    },
+                    title: 'Toolbox'
+                })
+            });
+    </script>
+    <script src="{% static 'website/js/jquery.min.js' %}"></script>
+    <script src="{% static 'website/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'website/js/script.min.js' %}"></script>
+</body>
+</html>

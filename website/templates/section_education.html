@@ -1,0 +1,92 @@
+{% load static %}
+{% block section_education %}
+<section id="section-education" style="background-color: rgba(0,0,0,0);min-height: 100vh;">
+    <div class="container d-flex flex-column" style="height: 100%;padding-left: 40px;padding-top: 20px;padding-right: 20px;padding-bottom: 20px;">
+
+        <h1 style="font-family: 'Russo One', sans-serif;">Education</h1>
+        <ol class="arrow-bullet fa-ul" style="margin-bottom: 40px;">
+            {% for school in education.schools %}
+                <li>
+                    ({{school.year_start.year}} - {% if school.year_end != None %}{{school.year_end.year}}{% else %}Now{% endif %}) {{ school.diploma_type }}&nbsp;
+                    <i class="fa fa-long-arrow-right"></i>&nbsp;
+                    {% if school.entity != None %}
+                        <a href="{{ school.entity.website }}">{{ school.entity.name }}</a>&nbsp;-
+                    {% endif %}
+                    {% if school.diploma_description_link != None %}
+                        <a href="{{ school.diploma_description_link }}">
+                    {% endif %}
+                    {{ school.diploma_description }}
+                    {% if school.diploma_description_link != None %}
+                        </a>
+                    {% endif %}
+
+                    <span class="fa-li"><i class="fa fa-chevron-right"></i></span>
+                </li>
+            {% endfor %}
+        </ol>
+
+        <h2 style="font-family: 'Russo One', sans-serif;">Awards / Diplomas</h2>
+        <ol class="arrow-bullet fa-ul" style="margin-bottom: 40px;">
+            {% for diploma in education.diplomas %}
+                <li>
+                    {{ diploma.year.year }}&nbsp;
+                    <i class="fa fa-long-arrow-right"></i>&nbsp;
+                    {{ diploma.description }}
+
+                    {% if diploma.see_more_link != None %}
+                        <a href="{{diploma.see_more_link}}"><i class="fas fa-external-link-alt"></i></a>
+                    {% endif %}
+
+                    <span class="fa-li"><i class="fa fa-chevron-right"></i></span>
+                </li>
+            {% endfor %}
+        </ol>
+        <h2 style="font-family: 'Russo One', sans-serif;">Proffessional experience</h2>
+        <ol class="arrow-bullet fa-ul" style="margin-bottom: 40px;">
+            {% for xp in experience.pro %}
+                <li>
+                    {% if xp.detailed_date  %}
+                        {{ xp.date_start |date:"M, Y" }}
+                    {% else %}
+                        {{ xp.date_start |date:"Y" }}
+                    {% endif %}
+                    &nbsp;
+
+                    <i class="fa fa-long-arrow-right"></i>&nbsp;
+                    {% if xp.date_start > const.today %}
+                        Future
+                    {% else %}
+                        {{ xp.date_end|timeuntil:xp.date_start | default:"ongoing" |title}}
+                    {% endif %}
+                    {{ xp.description }} at
+                    <a href="{{ xp.entity.website }}">{{ xp.entity.name }}</a>
+                    <span class="fa-li"><i class="fa fa-chevron-right"></i></span>
+                </li>
+            {% endfor %}
+        </ol>
+        <h2 style="font-family: 'Russo One', sans-serif;">General experience</h2>
+        <ol class="arrow-bullet fa-ul" style="margin-bottom: 40px;">
+            {% for xp in experience.personal %}
+                <li>
+                    {% if xp.detailed_date  %}
+                        {{ xp.date_start |date:"M, Y" }}
+                    {% else %}
+                        {{ xp.date_start |date:"Y" }}
+                    {% endif %}
+                    &nbsp;
+
+                    <i class="fa fa-long-arrow-right"></i>&nbsp;
+                    {% if xp.date_start > const.today %}
+                        Future
+                    {% else %}
+                        {{ xp.date_end|timeuntil:xp.date_start | default:"ongoing" |title}}
+                    {% endif %}
+                    {{ xp.description }} at
+                    <a href="{{ xp.entity.website }}">{{ xp.entity.name }}</a>
+                    <span class="fa-li"><i class="fa fa-chevron-right"></i></span>
+                </li>
+            {% endfor %}
+        </ol>
+    </div>
+</section>
+{% endblock %}
