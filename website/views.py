@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.template.defaultfilters import register
 from datetime import date
 
-from .models import SocialLink, GeneralConfig, School, DiplomaAward, Experience, EXPERIENCE_TYPE_CHOICES
+from .models import SocialLink, GeneralConfig, School, DiplomaAward, Experience, Interest, EXPERIENCE_TYPE_CHOICES
 
 
 
@@ -27,6 +27,11 @@ def index(request):
 			'pro': Experience.objects.filter(type__in=[x[0] for x in EXPERIENCE_TYPE_CHOICES[2][1]]).order_by(
 				'-date_start'),
 		},
+		'interests': {
+			'interests': Interest.objects.order_by('order'),
+			'tldr': GeneralConfig.objects.get(key="skills_tldr").value,
+		},
+
 		'const': {
 			'today': date.today()
 		}

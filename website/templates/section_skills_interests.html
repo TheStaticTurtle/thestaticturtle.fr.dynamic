@@ -1,0 +1,34 @@
+{% load static %}
+{% block section_education %}
+<section id="section-skill-interest" style="background-color: rgba(0,0,0,0);min-height: 100vh;">
+    <div class="container d-flex flex-column" style="height: 100%;padding-left: 40px;padding-top: 20px;padding-right: 20px;padding-bottom: 20px;">
+        <h1 style="font-family: 'Russo One', sans-serif;">Skills</h1>
+        <div>
+            <i class="fab fa-python" style="font-size: 60px;margin: 8px;color: #8c8c8c;"></i>
+            <i class="fab fa-html5" style="font-size: 60px;margin: 8px;color: #8c8c8c;"></i>
+            <i class="icon ion-social-javascript" style="font-size: 60px;margin: 8px;color: #8c8c8c;"></i>
+            <strong style="color: #8c8c8c;font-size: 63px;letter-spacing: -4px;">C++ C#</strong>
+            <i class="fab fa-linux" style="font-size: 60px;margin: 8px;color: #8c8c8c;"></i>
+        </div>
+
+        {{ interests.tldr|safe }}
+
+        <h1 style="font-family: 'Russo One', sans-serif;">Interests</h1>
+        <p>While I love programming, this isn't all my life.<br></p>
+
+        {% for interest in interests.interests %}
+            <div class="row">
+                <div class="col-lg-3 d-flex justify-content-center align-items-center" style="padding: 0px;">
+                {% for icon in interest.icons_as_list %}
+                    <i class="{{ icon }}" style="font-size: 60px;margin: 8px;color: #8c8c8c;"></i>
+                {% endfor %}
+                </div>
+                <div class="col">
+                    <p> {{ interest.description|safe }} </p>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+</section>
+{% endblock %}

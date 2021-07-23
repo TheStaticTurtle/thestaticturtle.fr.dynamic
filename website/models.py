@@ -79,3 +79,16 @@ class Experience(models.Model):
 	see_more_link = models.CharField(max_length=100, default=None, blank=True, null=True)
 	def __str__(self):
 		return str(self.type).upper() + " / " + str(self.description) + " at " +str(self.entity.name)
+
+# Interests
+class Interest(models.Model):
+	order = models.IntegerField(default=0)
+	name = models.CharField(max_length=100)
+	icons = models.CharField(max_length=100, default=None, blank=True, null=True)
+	description = models.CharField(max_length=1000)
+
+	def icons_as_list(self):
+		return self.icons.split(',')
+
+	def __str__(self):
+		return str(self.name)+" order:"+str(self.order)
