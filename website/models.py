@@ -19,6 +19,12 @@ DIPLOMA_TYPE_CHOICES = (
 	('AWARD', 'Award'),
 )
 
+PROJECT_TYPE_CHOICES = (
+	('UNDEFINED', '-'),
+	('PERSONAL', 'Personal'),
+	('SCHOOL', 'School'),
+)
+
 class GeneralConfig(models.Model):
 	key = models.CharField(max_length=50, unique=True)
 	value = models.CharField(max_length=10000)
@@ -92,3 +98,22 @@ class Interest(models.Model):
 
 	def __str__(self):
 		return str(self.name)+" order:"+str(self.order)
+
+# Interests
+class Project(models.Model):
+	name = models.CharField(max_length=100)
+	type = models.CharField(max_length=50, choices=PROJECT_TYPE_CHOICES)
+	description = models.CharField(max_length=1000)
+	image_url = models.CharField(max_length=200)
+	github_url = models.CharField(max_length=200, default=None, blank=True, null=True)
+	blog_url = models.CharField(max_length=200, default=None, blank=True, null=True)
+	docs_url = models.CharField(max_length=200, default=None, blank=True, null=True)
+	download_url = models.CharField(max_length=200, default=None, blank=True, null=True)
+	did_at_school = models.ForeignKey(School, default=None, blank=True, null=True, on_delete=models.DO_NOTHING)
+
+	# icons = models.CharField(max_length=100, default=None, blank=True, null=True)
+	# def icons_as_list(self):
+	# 	return self.icons.split(',')
+
+	def __str__(self):
+		return str(self.type) + " / " + str(self.name)

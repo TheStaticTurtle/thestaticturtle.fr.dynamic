@@ -3,12 +3,15 @@
 <section id="section-skill-interest" style="background-color: rgba(0,0,0,0);min-height: 100vh;">
     <div class="container d-flex flex-column" style="height: 100%;padding-left: 40px;padding-top: 20px;padding-right: 20px;padding-bottom: 20px;">
         <h1 style="font-family: 'Russo One', sans-serif;">Skills</h1>
-        <div>
-            <i class="fab fa-python" style="font-size: 60px;margin: 8px;color: #8c8c8c;"></i>
-            <i class="fab fa-html5" style="font-size: 60px;margin: 8px;color: #8c8c8c;"></i>
-            <i class="icon ion-social-javascript" style="font-size: 60px;margin: 8px;color: #8c8c8c;"></i>
-            <strong style="color: #8c8c8c;font-size: 63px;letter-spacing: -4px;">C++ C#</strong>
-            <i class="fab fa-linux" style="font-size: 60px;margin: 8px;color: #8c8c8c;"></i>
+<!--        <div style="min-height: 185px; width:100%">-->
+        My github statistics:
+        <div class="d-flex flex-xl-row flex-lg-row flex-column mb-3 align-items-center justify-center" style="">
+            <div >
+                <img class="p-1" style="max-width:100%" src="https://github-readme-stats.vercel.app/api/top-langs/?username=thestaticturtle&layout=compact&langs_count=10&exclude_repo=gnuk,chostx&hide_title=true&hide=Assembly&disable_animations=true"/>
+            </div>
+            <div>
+                <img class="mr-4 p-1" style="height: 100%; max-width:100%" src="https://github-readme-stats.vercel.app/api?username=thestaticturtle&count_private=true&show_icons=true&hide_title=true&disable_animations=true"/>
+            </div>
         </div>
 
         {{ interests.tldr|safe }}

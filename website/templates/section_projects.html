@@ -1,0 +1,81 @@
+{% load static %}
+{% block section_projects %}
+<section id="section-projects" style="background-color: rgba(0,0,0,0);min-height: 100vh;">
+    <div class="container d-flex flex-column" style="height: 100%;padding-left: 40px;padding-top: 20px;padding-right: 20px;padding-bottom: 20px;">
+        <h1 style="font-family: 'Russo One', sans-serif;">My Projects</h1>
+        <p style="border-style: none;">
+            {{ projects.tldr |safe }}
+        </p>
+        <div>
+            <ul class="nav nav-tabs">
+                <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1">Personal projects</a></li>
+                <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2">School projects</a></li>
+            </ul>
+            <div class="tab-content" style="padding: 20px;border-width: 0px;border-style: solid;border-right-width: 1px;border-right-color: #dedede;border-bottom-width: 1px;border-bottom-color: #dedede;border-left-width: 1px;border-left-color: #dedede;">
+                <div class="tab-pane active" role="tabpanel" id="tab-1">
+                    <p>This is a reduced list of the projects that I consider good enought to share here.</p>
+                    <div class="card-columns">
+                        {% for project in projects.personal %}
+                            <div class="card">
+                                <img class="img-fluid card-img-top w-100 d-block" src="{{ project.image_url }}">
+                                <div class="card-body">
+                                    <h4 class="card-title">{{ project.name }}</h4>
+                                    <p class="card-text">{{ project.description }}</p>
+                                </div>
+                                <div class="card-footer">
+                                    {% if project.github_url != None %}
+                                        <i class="fab fa-github"></i><a href="{{ project.github_url }}" style="padding: 5px;">Github</a><br>
+                                    {% endif %}
+                                    {% if project.blog_url != None %}
+                                        <i class="fas fa-book"></i><a href="{{ project.github_url }}" style="padding: 5px;">Blog article</a><br>
+                                    {% endif %}
+                                    {% if project.docs_url != None %}
+                                        <i class="fas fa-passport"></i><a href="{{ project.docs_url }}" style="padding: 5px;">Docs</a><br>
+                                    {% endif %}
+                                    {% if project.download_url != None %}
+                                        <i class="fas fa-download"></i><a href="{{ project.download_url }}" style="padding: 5px;">Download</a><br>
+                                    {% endif %}
+                                    {% if project.did_at_school != None %}
+                                        <i class="fas fa-school"></i> {{ project.did_at_school.entity.name }}<br>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="tab-pane" role="tabpanel" id="tab-2">
+                    <p>Some of the best school project that I feel confortable to share. There are others but they aren't worthy of being here.</p>
+                    <div class="card-columns">
+                        {% for project in projects.school %}
+                            <div class="card">
+                                <img class="img-fluid card-img-top w-100 d-block" src="{{ project.image_url }}">
+                                <div class="card-body">
+                                    <h4 class="card-title">{{ project.name }}</h4>
+                                    <p class="card-text">{{ project.description }}</p>
+                                </div>
+                                <div class="card-footer">
+                                    {% if project.github_url != None %}
+                                        <i class="fab fa-github"></i><a href="{{ project.github_url }}" style="padding: 5px;">Github</a><br>
+                                    {% endif %}
+                                    {% if project.blog_url != None %}
+                                        <i class="fas fa-book"></i><a href="{{ project.github_url }}" style="padding: 5px;">Blog article</a><br>
+                                    {% endif %}
+                                    {% if project.docs_url != None %}
+                                        <i class="fas fa-passport"></i><a href="{{ project.docs_url }}" style="padding: 5px;">Docs</a><br>
+                                    {% endif %}
+                                    {% if project.download_url != None %}
+                                        <i class="fas fa-download"></i><a href="{{ project.download_url }}" style="padding: 5px;">Download</a><br>
+                                    {% endif %}
+                                    {% if project.did_at_school != None %}
+                                        <i class="fas fa-school"></i> {{ project.did_at_school.entity.name }}<br>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

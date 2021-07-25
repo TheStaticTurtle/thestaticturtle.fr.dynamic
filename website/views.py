@@ -4,7 +4,7 @@ from django.template import loader
 from django.shortcuts import render
 from datetime import date
 
-from .models import SocialLink, GeneralConfig, School, DiplomaAward, Experience, Interest, EXPERIENCE_TYPE_CHOICES
+from .models import SocialLink, GeneralConfig, School, DiplomaAward, Experience, Interest, Project, EXPERIENCE_TYPE_CHOICES,PROJECT_TYPE_CHOICES
 
 def index(request):
 	template = loader.get_template('index.html')
@@ -28,6 +28,11 @@ def index(request):
 		'interests': {
 			'interests': Interest.objects.order_by('order'),
 			'tldr': GeneralConfig.objects.get(key="skills_tldr").value,
+		},
+		'projects': {
+			'personal': Project.objects.filter(type__in=[PROJECT_TYPE_CHOICES[1][0]]),
+			'school': Project.objects.filter(type__in=[PROJECT_TYPE_CHOICES[2][0]]),
+			'tldr': GeneralConfig.objects.get(key="projects_tldr").value,
 		},
 
 		'const': {
