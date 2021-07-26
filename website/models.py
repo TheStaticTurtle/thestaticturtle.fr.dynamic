@@ -43,7 +43,7 @@ PROJECT_FRENCH_TYPE_CHOICES = (
 
 class GeneralConfig(models.Model):
 	key = models.CharField(max_length=50, unique=True)
-	value = models.CharField(max_length=10000)
+	value = models.CharField(max_length=50000)
 	def __str__(self):
 		return str(self.key)
 
@@ -51,8 +51,8 @@ class SocialLink(models.Model):
 	order = models.IntegerField(default=0)
 	icon_class = models.CharField(max_length=50)
 	tooltip = models.CharField(max_length=50)
-	link = models.CharField(max_length=100, default=None, blank=True, null=True)
-	html = models.CharField(max_length=1000, default=None, blank=True, null=True)
+	link = models.CharField(max_length=500, default=None, blank=True, null=True)
+	html = models.CharField(max_length=5000, default=None, blank=True, null=True)
 	def __str__(self):
 		return "SocialLink \""+str(self.tooltip)+"\" order:"+str(self.order)+" link:"+str(self.link)+""
 
@@ -63,9 +63,9 @@ class Entity(models.Model):
 	description = models.CharField(max_length=500)
 	contact_email = models.EmailField(max_length=50, default=None, blank=True, null=True)
 	contact_phone = models.CharField(max_length=50, default=None, blank=True, null=True)
-	address = models.CharField(max_length=100, default=None, blank=True, null=True)
+	address = models.CharField(max_length=500, default=None, blank=True, null=True)
 
-	french_description = models.CharField(max_length=1000, default=None, blank=True, null=True)
+	french_description = models.CharField(max_length=5000, default=None, blank=True, null=True)
 	def __str__(self):
 		return str(self.name)
 
@@ -79,7 +79,7 @@ class School(models.Model):
 	diploma_description_link = models.CharField(max_length=100)
 
 	french_diploma_type = models.CharField(max_length=50, default=None, blank=True, null=True)
-	french_diploma_description = models.CharField(max_length=1000, default=None, blank=True, null=True)
+	french_diploma_description = models.CharField(max_length=5000, default=None, blank=True, null=True)
 	def __str__(self):
 		return str(self.diploma_type) + " at " +str(self.entity.name)
 
@@ -93,7 +93,7 @@ class DiplomaAward(models.Model):
 	see_more_link = models.CharField(max_length=100)
 
 	french_type = models.CharField(max_length=50, default=None, blank=True, null=True, choices=DIPLOMA_FRENCH_TYPE_CHOICES)
-	french_description = models.CharField(max_length=1000, default=None, blank=True, null=True)
+	french_description = models.CharField(max_length=5000, default=None, blank=True, null=True)
 	def __str__(self):
 		return str(self.type).upper() + " / " + str(self.description) + " at " +str(self.delivered_by.name)
 
@@ -105,10 +105,10 @@ class Experience(models.Model):
 	type = models.CharField(max_length=50, choices=EXPERIENCE_TYPE_CHOICES)
 	entity = models.ForeignKey(Entity, default=None, blank=True, null=True, on_delete=models.DO_NOTHING)
 	description = models.CharField(max_length=100)
-	see_more_link = models.CharField(max_length=100, default=None, blank=True, null=True)
+	see_more_link = models.CharField(max_length=500, default=None, blank=True, null=True)
 
 	french_type = models.CharField(max_length=50, default=None, blank=True, null=True, choices=EXPERIENCE_FRENCH_TYPE_CHOICES)
-	french_description = models.CharField(max_length=1000, default=None, blank=True, null=True)
+	french_description = models.CharField(max_length=5000, default=None, blank=True, null=True)
 	def __str__(self):
 		return str(self.type).upper() + " / " + str(self.description) + " at " +str(self.entity.name)
 
@@ -116,11 +116,11 @@ class Experience(models.Model):
 class Interest(models.Model):
 	order = models.IntegerField(default=0)
 	name = models.CharField(max_length=100)
-	icons = models.CharField(max_length=100, default=None, blank=True, null=True)
-	description = models.CharField(max_length=1000)
+	icons = models.CharField(max_length=500, default=None, blank=True, null=True)
+	description = models.CharField(max_length=5000)
 
 	french_name = models.CharField(max_length=50, default=None, blank=True, null=True)
-	french_description = models.CharField(max_length=1000, default=None, blank=True, null=True)
+	french_description = models.CharField(max_length=5000, default=None, blank=True, null=True)
 
 	def icons_as_list(self):
 		return self.icons.split(',')
@@ -132,7 +132,7 @@ class Interest(models.Model):
 class Project(models.Model):
 	name = models.CharField(max_length=100)
 	type = models.CharField(max_length=50, choices=PROJECT_TYPE_CHOICES)
-	description = models.CharField(max_length=1000)
+	description = models.CharField(max_length=5000)
 	image_url = models.CharField(max_length=200)
 	github_url = models.CharField(max_length=200, default=None, blank=True, null=True)
 	blog_url = models.CharField(max_length=200, default=None, blank=True, null=True)
@@ -140,8 +140,8 @@ class Project(models.Model):
 	download_url = models.CharField(max_length=200, default=None, blank=True, null=True)
 	did_at_school = models.ForeignKey(School, default=None, blank=True, null=True, on_delete=models.DO_NOTHING)
 
-	french_description = models.CharField(max_length=1000, default=None, blank=True, null=True)
-	# icons = models.CharField(max_length=100, default=None, blank=True, null=True)
+	french_description = models.CharField(max_length=5000, default=None, blank=True, null=True)
+	# icons = models.CharField(max_length=500, default=None, blank=True, null=True)
 	# def icons_as_list(self):
 	# 	return self.icons.split(',')
 
