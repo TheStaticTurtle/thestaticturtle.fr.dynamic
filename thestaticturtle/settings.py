@@ -26,6 +26,8 @@ SECRET_KEY = 'django-insecure-z58ol_51pzqoyo!k+6n%yio9^srb1o%124+$oofj3ui#uu_mi!
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    "fr.thestaticturtle.fr",
+    "thestaticturtle.fr",
     "laptop.8080.home.tugler.fr",
     "192.168.1.77",
     "127.0.0.1"
@@ -81,7 +83,7 @@ WSGI_APPLICATION = 'thestaticturtle.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'database/db.sqlite3',
     }
 }
 
