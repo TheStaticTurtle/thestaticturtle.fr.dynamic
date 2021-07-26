@@ -8,7 +8,7 @@
         <h1 class="d-flex flex-wrap" style="font-family: 'Russo One', sans-serif;font-size: 60px;">{{ about.title | safe}}</h1>
         {% with age=const.today|timeuntil:const.birthday %}
             {% with agespl=age|split:" "|get:0 %}
-                {{ about.tldr_fr | search:"---auto_age---" | replace:agespl | safe }}
+                {{ about.tldr_fr | search:"---auto_age---" | replace:agespl | search:"years," | replace:"" | safe }}
             {% endwith %}
         {% endwith %}
 
