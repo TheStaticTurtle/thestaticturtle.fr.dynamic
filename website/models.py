@@ -1,7 +1,6 @@
 from django.db import models
 
 EXPERIENCE_TYPE_CHOICES = (
-	('UNDEFINED', '-'),
 	('Personal', (
 		('ASC', 'Association'),
 	)),
@@ -12,17 +11,34 @@ EXPERIENCE_TYPE_CHOICES = (
 		('APPRENTICE', 'Apprenticeship'),
 	)),
 )
+EXPERIENCE_FRENCH_TYPE_CHOICES = (
+	('Personal', (
+		('ASC', 'Association'),
+	)),
+	('Professional', (
+		('CDD', 'CDD'),
+		('CDI', 'CDI'),
+		('INTERNSHIP', 'Stage'),
+		('APPRENTICE', 'Apprentisage'),
+	)),
+)
 
 DIPLOMA_TYPE_CHOICES = (
-	('UNDEFINED', '-'),
 	('DIPLOMA', 'Diploma'),
 	('AWARD', 'Award'),
 )
+DIPLOMA_FRENCH_TYPE_CHOICES = (
+	('DIPLOMA', 'Diplome'),
+	('AWARD', 'Prix'),
+)
 
 PROJECT_TYPE_CHOICES = (
-	('UNDEFINED', '-'),
 	('PERSONAL', 'Personal'),
 	('SCHOOL', 'School'),
+)
+PROJECT_FRENCH_TYPE_CHOICES = (
+	('PERSONAL', 'Personel'),
+	('SCHOOL', 'Scolaire'),
 )
 
 class GeneralConfig(models.Model):
@@ -45,10 +61,11 @@ class Entity(models.Model):
 	name = models.CharField(max_length=50)
 	website = models.CharField(max_length=100)
 	description = models.CharField(max_length=500)
-	short_description = models.CharField(max_length=100, default=None, blank=True, null=True)
 	contact_email = models.EmailField(max_length=50, default=None, blank=True, null=True)
 	contact_phone = models.CharField(max_length=50, default=None, blank=True, null=True)
 	address = models.CharField(max_length=100, default=None, blank=True, null=True)
+
+	french_description = models.CharField(max_length=1000, default=None, blank=True, null=True)
 	def __str__(self):
 		return str(self.name)
 
@@ -60,6 +77,9 @@ class School(models.Model):
 	entity = models.ForeignKey(Entity, default=None, blank=True, null=True, on_delete=models.DO_NOTHING)
 	diploma_description = models.CharField(max_length=100)
 	diploma_description_link = models.CharField(max_length=100)
+
+	french_diploma_type = models.CharField(max_length=50, default=None, blank=True, null=True)
+	french_diploma_description = models.CharField(max_length=1000, default=None, blank=True, null=True)
 	def __str__(self):
 		return str(self.diploma_type) + " at " +str(self.entity.name)
 
@@ -71,6 +91,9 @@ class DiplomaAward(models.Model):
 	delivered_by = models.ForeignKey(Entity, default=None, blank=True, null=True, on_delete=models.DO_NOTHING)
 	description = models.CharField(max_length=100)
 	see_more_link = models.CharField(max_length=100)
+
+	french_type = models.CharField(max_length=50, default=None, blank=True, null=True, choices=DIPLOMA_FRENCH_TYPE_CHOICES)
+	french_description = models.CharField(max_length=1000, default=None, blank=True, null=True)
 	def __str__(self):
 		return str(self.type).upper() + " / " + str(self.description) + " at " +str(self.delivered_by.name)
 
@@ -83,6 +106,9 @@ class Experience(models.Model):
 	entity = models.ForeignKey(Entity, default=None, blank=True, null=True, on_delete=models.DO_NOTHING)
 	description = models.CharField(max_length=100)
 	see_more_link = models.CharField(max_length=100, default=None, blank=True, null=True)
+
+	french_type = models.CharField(max_length=50, default=None, blank=True, null=True, choices=EXPERIENCE_FRENCH_TYPE_CHOICES)
+	french_description = models.CharField(max_length=1000, default=None, blank=True, null=True)
 	def __str__(self):
 		return str(self.type).upper() + " / " + str(self.description) + " at " +str(self.entity.name)
 
@@ -92,6 +118,9 @@ class Interest(models.Model):
 	name = models.CharField(max_length=100)
 	icons = models.CharField(max_length=100, default=None, blank=True, null=True)
 	description = models.CharField(max_length=1000)
+
+	french_name = models.CharField(max_length=50, default=None, blank=True, null=True)
+	french_description = models.CharField(max_length=1000, default=None, blank=True, null=True)
 
 	def icons_as_list(self):
 		return self.icons.split(',')
@@ -111,6 +140,7 @@ class Project(models.Model):
 	download_url = models.CharField(max_length=200, default=None, blank=True, null=True)
 	did_at_school = models.ForeignKey(School, default=None, blank=True, null=True, on_delete=models.DO_NOTHING)
 
+	french_description = models.CharField(max_length=1000, default=None, blank=True, null=True)
 	# icons = models.CharField(max_length=100, default=None, blank=True, null=True)
 	# def icons_as_list(self):
 	# 	return self.icons.split(',')

@@ -1,0 +1,39 @@
+{% load static %}
+{% load replace %}
+{% load timeuntil_fr %}
+{% load split %}
+{% block section_about %}
+<section id="section-about" style="background-color: rgba(0,0,0,0);height: 100vh;">
+    <div class="container d-flex flex-column justify-content-center" style="height: 100%;padding-left: 40px;padding-top: 20px;padding-right: 20px;padding-bottom: 20px;">
+        <h1 class="d-flex flex-wrap" style="font-family: 'Russo One', sans-serif;font-size: 60px;">{{ about.title | safe}}</h1>
+        {% with age=const.today|timeuntil:const.birthday %}
+            {% with agespl=age|split:" "|get:0 %}
+                {{ about.tldr_fr | search:"---auto_age---" | replace:agespl | safe }}
+            {% endwith %}
+        {% endwith %}
+
+        <div class="d-flex flex-row">
+            {% for social_link in about.social_links %}
+                <a class="colorOnHover"
+                    {% if social_link.link != None %}
+                        href="{{ social_link.link }}"
+                    {% endif %}
+                    style="margin: 3px;color: #8c8c8c;"
+                    {% if social_link.html != None %}
+                        data-container="body"
+                        data-toggle="popover"
+                        data-placement="bottom"
+                        data-content="{{ social_link.html |safe }}"
+                        data-html="true"
+                        data-trigger="focus"
+                        tabindex="0"
+                        title="{{ social_link.tooltip }}"
+                   {% endif %}
+                >
+                    <i class="{{ social_link.icon_class }} border rounded-circle d-flex justify-content-center align-items-center" data-toggle="tooltip" data-bs-tooltip="" style="width: 48px;height: 48px;font-size: 25px;" title="{{ social_link.tooltip }}"></i>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

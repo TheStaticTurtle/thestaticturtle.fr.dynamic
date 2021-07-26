@@ -1,0 +1,36 @@
+{% load static %}
+{% block section_education %}
+<section id="section-skill-interest" style="background-color: rgba(0,0,0,0);min-height: 100vh;">
+    <div class="container d-flex flex-column" style="height: 100%;padding-left: 40px;padding-top: 20px;padding-right: 20px;padding-bottom: 20px;">
+        <h1 style="font-family: 'Russo One', sans-serif;">Compétences</h1>
+        Statistiques github:
+        <div class="row" style="">
+            <div class="col-lg d-flex flex-column align-items-center">
+                <img class="p-1" style="min-height:200px; max-width:100%" src="https://github-readme-stats.vercel.app/api/top-langs/?username=thestaticturtle&layout=compact&langs_count=10&exclude_repo=gnuk,chostx&hide_title=true&hide=Assembly&disable_animations=true&cache_seconds=10800"/>
+            </div>
+            <div class="col-lg d-flex flex-column align-items-center">
+                <img class="p-1" style="min-height:200px; max-width:100%" src="https://github-readme-stats.vercel.app/api?username=thestaticturtle&count_private=true&show_icons=true&hide_title=true&disable_animations=true&hide_rank=true&cache_seconds=10800"/>
+            </div>
+        </div>
+
+        {{ interests.tldr_fr|safe }}
+
+        <h1 style="font-family: 'Russo One', sans-serif;">Autres centres d’intérêt</h1>
+        <p>Bien que j'adore la programmation, ce n'est pas toute ma vie.<br></p>
+
+        {% for interest in interests.interests %}
+            <div class="row">
+                <div class="col-lg-3 d-flex justify-content-center align-items-center" style="padding: 0px;">
+                {% for icon in interest.icons_as_list %}
+                    <i class="{{ icon }}" style="font-size: 60px;margin: 8px;color: #8c8c8c;"></i>
+                {% endfor %}
+                </div>
+                <div class="col">
+                    <p> {{ interest.french_description|safe }} </p>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+</section>
+{% endblock %}

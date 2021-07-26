@@ -11,6 +11,7 @@ def build_context():
 		'about': {
 			'social_links': SocialLink.objects.order_by('order'),
 			'tldr': GeneralConfig.objects.get(key="about_tldr").value,
+			'tldr_fr': GeneralConfig.objects.get(key="about_tldr_fr").value,
 			'title': GeneralConfig.objects.get(key="about_title").value
 		},
 		'education': {
@@ -19,19 +20,21 @@ def build_context():
 		},
 		'awards': DiplomaAward.objects.filter(type="AWARDS").order_by('-year'),
 		'experience': {
-			'personal': Experience.objects.filter(type__in=[x[0] for x in EXPERIENCE_TYPE_CHOICES[1][1]]).order_by(
+			'personal': Experience.objects.filter(type__in=[x[0] for x in EXPERIENCE_TYPE_CHOICES[0][1]]).order_by(
 				'-date_start'),
-			'pro': Experience.objects.filter(type__in=[x[0] for x in EXPERIENCE_TYPE_CHOICES[2][1]]).order_by(
+			'pro': Experience.objects.filter(type__in=[x[0] for x in EXPERIENCE_TYPE_CHOICES[1][1]]).order_by(
 				'-date_start'),
 		},
 		'interests': {
 			'interests': Interest.objects.order_by('order'),
 			'tldr': GeneralConfig.objects.get(key="skills_tldr").value,
+			'tldr_fr': GeneralConfig.objects.get(key="skills_tldr_fr").value,
 		},
 		'projects': {
-			'personal': Project.objects.filter(type__in=[PROJECT_TYPE_CHOICES[1][0]]),
-			'school': Project.objects.filter(type__in=[PROJECT_TYPE_CHOICES[2][0]]),
+			'personal': Project.objects.filter(type__in=[PROJECT_TYPE_CHOICES[0][0]]),
+			'school': Project.objects.filter(type__in=[PROJECT_TYPE_CHOICES[1][0]]),
 			'tldr': GeneralConfig.objects.get(key="projects_tldr").value,
+			'tldr_fr': GeneralConfig.objects.get(key="projects_tldr_fr").value,
 		},
 
 		'const': {
