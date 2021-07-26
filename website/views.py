@@ -6,9 +6,8 @@ from datetime import date
 
 from .models import SocialLink, GeneralConfig, School, DiplomaAward, Experience, Interest, Project, EXPERIENCE_TYPE_CHOICES,PROJECT_TYPE_CHOICES
 
-def index(request):
-	template = loader.get_template('index.html')
-	context = {
+def build_context():
+	return {
 		'about': {
 			'social_links': SocialLink.objects.order_by('order'),
 			'tldr': GeneralConfig.objects.get(key="about_tldr").value,
@@ -40,6 +39,13 @@ def index(request):
 			'birthday': date.fromisoformat(GeneralConfig.objects.get(key="about_brithday").value)
 		}
 	}
-	print()
-	return HttpResponse(template.render(context, request))
+
+def index(request):
+	template = loader.get_template('en/index.html')
+	return HttpResponse(template.render(build_context(), request))
+
+def index_fr(request):
+	template = loader.get_template('fr/index.html')
+	return HttpResponse(template.render(build_context(), request))
+
 # Create your views here.
