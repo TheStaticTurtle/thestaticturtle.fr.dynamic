@@ -8,8 +8,8 @@
         </p>
         <div>
             <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1">Personal projects</a></li>
-                <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2">School projects</a></li>
+                <li class="nav-item"><a target="_blank" class="nav-link active" role="tab" data-toggle="tab" href="#tab-1">Personal projects</a></li>
+                <li class="nav-item"><a target="_blank" class="nav-link" role="tab" data-toggle="tab" href="#tab-2">School projects</a></li>
             </ul>
             <div class="tab-content" style="padding: 20px;border-width: 0px;border-style: solid;border-right-width: 1px;border-right-color: #dedede;border-bottom-width: 1px;border-bottom-color: #dedede;border-left-width: 1px;border-left-color: #dedede;">
                 <div class="tab-pane active" role="tabpanel" id="tab-1">
@@ -24,16 +24,16 @@
                                 </div>
                                 <div class="card-footer">
                                     {% if project.github_url != None %}
-                                        <i class="fab fa-github"></i><a href="{{ project.github_url }}" style="padding: 5px;">Github</a><br>
+                                        <i class="fab fa-github"></i><a target="_blank" href="{{ project.github_url }}" style="padding: 5px;">Github</a><br>
                                     {% endif %}
                                     {% if project.blog_url != None %}
-                                        <i class="fas fa-book"></i><a href="{{ project.github_url }}" style="padding: 5px;">Blog article</a><br>
+                                        <i class="fas fa-book"></i><a target="_blank" href="{{ project.github_url }}" style="padding: 5px;">Blog article</a><br>
                                     {% endif %}
                                     {% if project.docs_url != None %}
-                                        <i class="fas fa-passport"></i><a href="{{ project.docs_url }}" style="padding: 5px;">Docs</a><br>
+                                        <i class="fas fa-passport"></i><a target="_blank" href="{{ project.docs_url }}" style="padding: 5px;">Docs</a><br>
                                     {% endif %}
                                     {% if project.download_url != None %}
-                                        <i class="fas fa-download"></i><a href="{{ project.download_url }}" style="padding: 5px;">Download</a><br>
+                                        <i class="fas fa-download"></i><a target="_blank" href="{{ project.download_url }}" style="padding: 5px;">Download</a><br>
                                     {% endif %}
                                     {% if project.did_at_school != None %}
                                         <i class="fas fa-school"></i> {{ project.did_at_school.entity.name }}<br>
@@ -55,16 +55,16 @@
                                 </div>
                                 <div class="card-footer">
                                     {% if project.github_url != None %}
-                                        <i class="fab fa-github"></i><a href="{{ project.github_url }}" style="padding: 5px;">Github</a><br>
+                                        <i class="fab fa-github"></i><a target="_blank" href="{{ project.github_url }}" style="padding: 5px;">Github</a><br>
                                     {% endif %}
                                     {% if project.blog_url != None %}
-                                        <i class="fas fa-book"></i><a href="{{ project.github_url }}" style="padding: 5px;">Blog article</a><br>
+                                        <i class="fas fa-book"></i><a target="_blank" href="{{ project.github_url }}" style="padding: 5px;">Blog article</a><br>
                                     {% endif %}
                                     {% if project.docs_url != None %}
-                                        <i class="fas fa-passport"></i><a href="{{ project.docs_url }}" style="padding: 5px;">Docs</a><br>
+                                        <i class="fas fa-passport"></i><a target="_blank" href="{{ project.docs_url }}" style="padding: 5px;">Docs</a><br>
                                     {% endif %}
                                     {% if project.download_url != None %}
-                                        <i class="fas fa-download"></i><a href="{{ project.download_url }}" style="padding: 5px;">Download</a><br>
+                                        <i class="fas fa-download"></i><a target="_blank" href="{{ project.download_url }}" style="padding: 5px;">Download</a><br>
                                     {% endif %}
                                     {% if project.did_at_school != None %}
                                         <i class="fas fa-school"></i> {{ project.did_at_school.entity.name }}<br>

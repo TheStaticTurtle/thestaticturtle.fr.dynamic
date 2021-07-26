@@ -14,7 +14,7 @@
 
         <div class="d-flex flex-row">
             {% for social_link in about.social_links %}
-                <a class="colorOnHover"
+                <a target="_blank" class="colorOnHover"
                     {% if social_link.link != None %}
                         href="{{ social_link.link }}"
                     {% endif %}

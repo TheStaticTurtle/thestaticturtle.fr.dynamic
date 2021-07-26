@@ -10,10 +10,10 @@
                     ({{school.year_start.year}} - {% if school.year_end != None %}{{school.year_end.year}}{% else %}Now{% endif %}) {{ school.diploma_type }}&nbsp;
                     <i class="fa fa-long-arrow-right"></i>&nbsp;
                     {% if school.entity != None %}
-                        <a href="{{ school.entity.website }}">{{ school.entity.name }}</a>&nbsp;-
+                        <a target="_blank" href="{{ school.entity.website }}">{{ school.entity.name }}</a>&nbsp;-
                     {% endif %}
                     {% if school.diploma_description_link != None %}
-                        <a href="{{ school.diploma_description_link }}">
+                        <a target="_blank" href="{{ school.diploma_description_link }}">
                     {% endif %}
                     {{ school.diploma_description }}
                     {% if school.diploma_description_link != None %}
@@ -34,7 +34,7 @@
                     {{ diploma.description }}
 
                     {% if diploma.see_more_link != None %}
-                        <a href="{{diploma.see_more_link}}"><i class="fas fa-external-link-alt"></i></a>
+                        <a target="_blank" href="{{diploma.see_more_link}}"><i class="fas fa-external-link-alt"></i></a>
                     {% endif %}
 
                     <span class="fa-li"><i class="fa fa-chevron-right"></i></span>
@@ -59,7 +59,7 @@
                         {{ xp.date_end|timeuntil:xp.date_start | default:"ongoing" |title}}
                     {% endif %}
                     {{ xp.description }} at
-                    <a href="{{ xp.entity.website }}">{{ xp.entity.name }}</a>
+                    <a target="_blank" href="{{ xp.entity.website }}">{{ xp.entity.name }}</a>
                     <span class="fa-li"><i class="fa fa-chevron-right"></i></span>
                 </li>
             {% endfor %}
@@ -82,7 +82,7 @@
                         {{ xp.date_end|timeuntil:xp.date_start | default:"ongoing" |title}}
                     {% endif %}
                     {{ xp.description }} at
-                    <a href="{{ xp.entity.website }}">{{ xp.entity.name }}</a>
+                    <a target="_blank" href="{{ xp.entity.website }}">{{ xp.entity.name }}</a>
                     <span class="fa-li"><i class="fa fa-chevron-right"></i></span>
                 </li>
             {% endfor %}

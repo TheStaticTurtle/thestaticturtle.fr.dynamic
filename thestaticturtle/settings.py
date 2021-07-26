@@ -22,6 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 
+WINDOWS = os.getenv('WINDOWS', False)
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 DEBUG = os.getenv('DEBUG', False)
 ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '127.0.0.1').split(',')
@@ -51,8 +52,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'website.apps.WebsiteConfig',
-    'mod_wsgi.server',
 ]
+if not WINDOWS:
+    INSTALLED_APPS.append("mod_wsgi.server")
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
