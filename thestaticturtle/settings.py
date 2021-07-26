@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -19,19 +20,24 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
+
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+DEBUG = os.getenv('DEBUG', False)
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '127.0.0.1').split(',')
+
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-z58ol_51pzqoyo!k+6n%yio9^srb1o%124+$oofj3ui#uu_mi!'
+# SECRET_KEY = 'django-insecure-z58ol_51pzqoyo!k+6n%yio9^srb1o%124+$oofj3ui#uu_mi!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = [
-    "fr.thestaticturtle.fr",
-    "thestaticturtle.fr",
-    "laptop.8080.home.tugler.fr",
-    "192.168.1.77",
-    "127.0.0.1"
-]
+# DEBUG = True
+#
+# ALLOWED_HOSTS = [
+#     "fr.thestaticturtle.fr",
+#     "thestaticturtle.fr",
+#     "laptop.8080.home.tugler.fr",
+#     "192.168.1.77",
+#     "127.0.0.1"
+# ]
 
 
 # Application definition
